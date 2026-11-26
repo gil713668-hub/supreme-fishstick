@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>גיוס מחזור 9 – אב-טיפוס</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f6f8;--surface:#fff;--ink:#16232f;--mute:#5d6d7a;--line:#d9e1e7;--accent:#0b7a75;--accent-ink:#fff;--hi:#1e8e4f;--mid:#c58a00;--lo:#c2412f;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1820;--surface:#18242f;--ink:#e8eef3;--mute:#93a3b0;--line:#2b3a47;--accent:#35b8b0;--accent-ink:#06201e;--hi:#4cc47f;--mid:#e0ac2b;--lo:#ec7a68}}
+:root[data-theme="dark"]{--bg:#0f1820;--surface:#18242f;--ink:#e8eef3;--mute:#93a3b0;--line:#2b3a47;--accent:#35b8b0;--accent-ink:#06201e;--hi:#4cc47f;--mid:#e0ac2b;--lo:#ec7a68}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Heebo,Arial,sans-serif;font-size:15px;line-height:1.5}
+header{padding:20px 20px 8px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+h1{font-size:22px;margin:0;font-weight:700}
+.sub{color:var(--mute);font-size:13px}
+button{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;padding:7px 12px}
+button:hover{border-color:var(--accent)}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+button.pri{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:500}
+.funnel{display:flex;gap:2px;padding:8px 20px;overflow-x:auto}
+.fs{flex:1;min-width:92px;background:var(--surface);border:1px solid var(--line);padding:10px 12px}
+.fs:first-child{border-radius:0 10px 10px 0}.fs:last-child{border-radius:10px 0 0 10px}
+.fs b{font-size:24px;display:block;line-height:1.1}
+.fs span{font-size:12px;color:var(--mute)}
+.fs i{font-style:normal;font-size:12px;color:var(--accent);font-weight:500}
+.tools{padding:8px 20px;display:flex;gap:10px;flex-wrap:wrap}
+input,select,textarea{font:inherit;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:7px 10px}
+.board{display:flex;gap:12px;padding:8px 20px 28px;overflow-x:auto;align-items:flex-start}
+.col{flex:0 0 240px;background:color-mix(in srgb,var(--line) 35%,transparent);border-radius:12px;padding:10px;min-height:120px}
+.col h2{font-size:14px;margin:2px 4px 10px;display:flex;justify-content:space-between}
+.col h2 em{font-style:normal;color:var(--mute);font-weight:400}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:8px;cursor:pointer;display:block;width:100%;text-align:right}
+.card:hover{border-color:var(--accent)}
+.card .n{font-weight:700}
+.card .p{color:var(--mute);font-size:13px}
+.card .r{display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:12px;color:var(--mute)}
+.sc{font-weight:700;font-size:15px}
+.dots{display:flex;gap:4px;margin-top:8px}.dot{flex:1;height:5px;border-radius:3px;background:var(--line)}.dot.on{background:var(--accent)}
+.nx{font-size:12px;color:var(--mute);margin-top:4px}.nx.ok{color:var(--hi)}
+.ckl{display:grid;gap:6px;margin:6px 0 12px}.ckl label{display:flex;gap:10px;align-items:center;padding:8px 10px;border:1px solid var(--line);border-radius:8px;cursor:pointer}.ckl input{width:18px;height:18px;padding:0;accent-color:var(--accent)}
+.hi{color:var(--hi)}.mid{color:var(--mid)}.lo{color:var(--lo)}.na{color:var(--mute)}
+dialog{border:1px solid var(--line);border-radius:14px;background:var(--surface);color:var(--ink);padding:20px;width:min(520px,94vw);max-height:90vh}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+.row{display:grid;grid-template-columns:90px 1fr 56px;gap:10px;align-items:center;margin:6px 0}
+.row input{padding:0}
+.big{font-size:34px;font-weight:700;line-height:1}
+.stg{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.stg button.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.fld{display:grid;gap:8px;margin:10px 0}
+.fld input,.fld textarea,.fld select{width:100%}
+.foot{display:flex;gap:8px;justify-content:space-between;margin-top:14px}
+</style>
+</head>
+<body>
+<header>
+  <div><h1>גיוס מחזור 9</h1><div class="sub">חממת היזמות של שנקר · נתוני מחזור 8 מתוך טפסי ההתעניינות וההרשמה</div></div>
+  <button class="pri" id="add">הוספת מועמד</button>
+</header>
+<div class="funnel" id="funnel"></div>
+<div class="tools">
+  <input id="q" type="search" placeholder="חיפוש לפי שם או פרויקט" aria-label="חיפוש">
+  <select id="src" aria-label="סינון לפי ערוץ"></select>
+  <select id="prg" aria-label="סינון לפי התקדמות"><option value="">כל ההתקדמות</option><option value="f">טפסים לא הושלמו</option><option value="2">ממתין לשיחת טלפון</option><option value="3">ממתין לראיון אישי</option><option value="4">הושלמו כל השלבים</option></select>
+</div>
+<div class="board" id="board"></div>
+
+<dialog id="dlg"></dialog>
+
+<script>
+var STAGES=["חדש","עבר סינון","שיחה וראיון","ועדת היגוי","התקבל","נדחה"];
+var CRIT=[["צוות",30],["גודל שוק",20],["חדשנות",15],["התאמה לחממה",20],["בשלות",15]];
+var SRC=["בוגרי קורסים","אקדמיה","קהילת סטארט-אפ","רשתות חברתיות","הפניה"];
+var nid=36;
+var C=[{"id":1,"name":"זהר מאירי","proj":"גרים בכיף","src":4,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,true,false,false],"status":"סטודנט/ית לתואר ראשון","fac":"עיצוב","intro":false,"desc":"״גרים בכיף״ היא פלטפורמה ליצירת שלטי כניסה אישיים לבית באמצעות AI, שבה המשתמש מעלה תמונה, מוסיף טקסט ובוחר סגנון - ומקבל עיצוב ייחודי שמוכן להפוך לשלט פיזי.","stage":"עסק פעיל, מעל 300 מכירות"},{"id":2,"name":"יסמין עזרא","proj":"WONDER","src":3,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,true,false,false],"status":"סטודנט/ית לתואר ראשון","fac":"עיצוב","intro":false,"desc":"להפוך אביזרים לבעלי מוגבלויות לאקססוריז עם אופי וביטוי עצמי","stage":"מודלים ראשוניים"},{"id":3,"name":"וג'ד דאוד","proj":"Heat-X","src":4,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,true,false,false],"status":"סטודנט/ית לתואר ראשון","fac":"הנדסה","intro":false,"desc":"המיזם מספק חשמל נקי לתעשיות עתירות אנרגיה על ידי המרת החום השיורי שלהן למשאב מניב, במודל שירות (EaaS) נטול סיכונים תפעוליים וכלכליים","stage":"המיזם נמצא בשלב ולידציה טכנו-כלכלית מתקדמת לקראת פיילוט. הושלם פיתוח של \"תאום דיגיטלי\" תרמודינמי שעבר אודיט מלא—כולל מבחני רגישות דינמיים לשחיקת ציוד, הצטברות ביולוגית, ואופטימיזציית שטיפות כימיות (CIP). התכנון כולל שרטוטי מערכת ומודל כלכלי מפורט. כעת אנו נערכים להרכבת המעטפת העסקית-משפטית וגיוס…"},{"id":4,"name":"מארק רטגאוזר","proj":"מבטופ","src":1,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,true,false,false],"status":"סטודנט/ית לתואר ראשון","fac":"הנדסה","intro":false,"desc":"יצירת והצגת סריקות תלת מימד באמצעות רחפנים של פרויקטי נדל״ן.","stage":"קיימת אפליקציה וובית, בוצעו פיילוטים ראשונים כרגע בתהליך של מציאת לקוחות משלמים ראשונים."},{"id":5,"name":"Ilan Chelly","proj":"Strongback","src":1,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,true,false,false],"status":"סטודנט/ית לתואר ראשון","fac":"הנדסה","intro":false,"desc":"Strongback היא מערכת תכנון מוצר ליזמים עצמאיים, שמרכזת מחקר שוק, אפיון, החלטות ושלבי ביצוע ומחברת אותם ישירות לסוכני קוד מבוססי AI.","stage":"המיזם נמצא בפיתוח פעיל. תשתיות המוצר וממשקי הליבה כבר נבנים, וכעת מתמקדים בגרסת ה-MVP ובתהליכים המרכזיים: יצירת תוכנית מוצר מובנית, חלוקה לשלבים ומשימות וחיבור לסוכני קוד. טרם הושקה גרסה מסחרית."},{"id":6,"name":"דינור זהבי","proj":"״בין מסגרות״ - מרחב שהייה זמני לחיילים וחיילות משוחררים מצה״ל","src":1,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,true,false,false],"status":"בוגר/ת שנקר","fac":"עיצוב","intro":false,"desc":"“בין מסגרות” הוא מיזם חברתי המציע מרחב שהייה זמני לחיילים וחיילות משוחררים, המשלב מגורים, קהילה, ליווי וכלים מעשיים בתקופת המעבר מהמסגרת הצבאית לחיים האזרחיים.","stage":"המיזם נמצא בשלב Proof of Concept (POC). במסגרת פרויקט הגמר פותח מודל ראשוני הכולל מחקר משתמשים, סקר בקרב חיילים משוחררים, גיבוש קונספט, פרוגרמה ותכנון מפורט של המרחב. במקביל החל תהליך לבחינת היתכנות מול גורמים רלוונטיים, במטרה לקדם פיילוט ראשון ולהפוך את המודל למיזם יישומי."},{"id":7,"name":"אורי","proj":"Smart Closet","src":1,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,true,false,false],"status":"סטודנט/ית לתואר ראשון","fac":"הנדסה","intro":false,"desc":"תארו את המיזם שלכם במשפט אחד: פלטפורמה חברתית חכמה לניהול ארון בגדים דיגיטלי, המשלבת המלצות סטיילינג מותאמות אישית מבוססות בינה מלאכותית, אווטאר דו-ממדי אינטראקטיבי ומרקטפלייס לבגדי יד שנייה","stage":"שלב הגדרת הקונספט, האפיון הטכני ותכנון אלגוריתמיקת ה-AI.כרגע רק בשלב הרעיון"},{"id":8,"name":"טימור קלימוב","proj":"Loceum","src":4,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,true,false,false],"status":"סטודנט/ית לתואר שני","fac":"עיצוב","intro":false,"desc":"We believe every person is on their own hero’s journey — so we’re building Loceum, a bridge between BCI and generative AI that hands you the next step in your personal development.","stage":"Idea to POC"},{"id":9,"name":"אלעד אנגל","proj":"Sound Spectrum","src":0,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,true,false,false],"status":"בוגר/ת שנקר","fac":"עיצוב","intro":true,"desc":"משחק קצב אינטראקטיבי המתרגם כתיבת מקצבים מוזיקליים לשלבי משחק מאתגרים, במטרה לעודד יצירתיות בתהליך ההפקה.","stage":"אחרי ולידציה ראשונית(כ-100 איש), לפני פרוטוטייפ."},{"id":10,"name":"לירון זיסקינד","proj":"Street Punks","src":1,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,true,false,false],"status":"בוגר/ת שנקר","fac":"עיצוב","intro":false,"desc":"משחק ישראלי קליל, כייפי, מצחיק, ומהנה שמתאים לכולם ובא לעשות טוב בתקופה הזאת.","stage":"גרסת בטא"},{"id":11,"name":"איזי קליין","proj":"fillyou.ai","src":1,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,true,false,false],"status":"בוגר/ת שנקר","fac":"הנדסה","intro":false,"desc":"מילוי טפסים מורכבים בעזרת צוות מיומן של רובוטים (סוכני ai) בפיקוח מומחים אנושיים.","stage":"תיקוני באגים. מבחני יציבות: go-to-market"},{"id":12,"name":"אורי בן שלוש","proj":"PIC Events","src":1,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,true,false,false],"status":"סטודנט/ית לתואר ראשון","fac":"הנדסה","intro":false,"desc":"PIC היא פלטפורמה לניהול והפקת אירועים שמרכזת ספקים, תקציב, תשלומים, מכירת כרטיסים וניהול האירוע במקום אחד.","stage":"Early Stage / Pre seed"},{"id":13,"name":"בר קורסיה","proj":"GO-padel","src":0,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,true,false,false],"status":"סטודנט/ית לתואר ראשון","fac":"הנדסה","intro":true,"desc":"מערכת לניהול ובקרה על השכרת ציוד לפי מפת מגרשים","stage":"מכירות"},{"id":14,"name":"נועה שויצר","proj":"טרם נחתם סופית","src":0,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,false,false,false],"status":"בוגר/ת שנקר","fac":"הנדסה","intro":true,"desc":"חומרה + תוכנה לשיפור המצב הפיזי והמנטלי של עובדי דסק תוך השפעה ישירה על הפרודוקטיביות","stage":"בניית פרוטוטייפ"},{"id":15,"name":"כימה מחלב","proj":"PAUSE","src":1,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,true,false,false],"status":"סטודנט/ית לתואר ראשון","fac":"עיצוב","intro":false,"desc":"תיק נשיאה רב־תכליתי שהופך בעת הצורך למושב רצפה עם משענת גב, ומאפשר לשאת ציוד ופתרון ישיבה באובייקט אחד.","stage":"המיזם נמצא בשלב של אבטיפוס פונקציונלי ראשוני. פותח ויוצר אבטיפוס פיזי שמדגים את עקרון הפעולה ומשלב בפועל בין תיק נשיאה למושב עם משענת גב. בשלב הבא נדרש להמשיך בפיתוח ובעידון המוצר, בדגש על מנגנון הפתיחה והסגירה, משקל ונפח, ארגונומיה, חומרים, עמידות ונוחות, ובהמשך לבחון התאמה לתהליכי ייצור ולמוצר…"},{"id":16,"name":"עידן פורטל","proj":"Punch 🥊","src":1,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,true,false,false],"status":"חבר.ת סגל/ מרצה בשנקר","fac":"עיצוב","intro":false,"desc":"כרטיסית ניקוב ווירטואלית שחיה בתוך הארנק הדיגיטלי","stage":"אנחנו נמצאים בשלב ה-Discovery של המוצר. לאחר תהליך Brainstorming וגיבוש ראשוני של הקונספט, מיפינו את הבעיה, הגדרנו את קהל היעד הראשוני, זיהינו את ה-Jobs To Be Done של המשתמשים ובתי העסק, והתחלנו לתעדף את יכולות הליבה של המוצר. בשלב הבא נרצה לבצע מחקר משתמשים וולידציה עם בעלי עסקים ולקוחות, לבנות…"},{"id":17,"name":"עמית חמו","proj":"Grip","src":1,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,true,false,false],"status":"סטודנט/ית לתואר ראשון","fac":"הנדסה","intro":false,"desc":"מערכת Grip נותנת לבעלי עסקים שליטה בזמן אמת על החנות שלהם גם כשהם לא שם- באמצעות מצלמות וקופה שכבר יש להם .","stage":"בניית MVP (כשבוע בערך מפיילוט ראשוני)"},{"id":18,"name":"טל ניסים","proj":"The Field","src":1,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,true,false,false],"status":"חבר.ת סגל/ מרצה בשנקר","fac":"אומנות","intro":false,"desc":"The Field היא פלטפורמה המנגישה את שדה האמנות העצמאי בישראל — מפה חיה של גלריות ותערוכות המאפשרת לתכנן ולצאת לסיור אמנות עצמאי, ובשלב הבא גם להיפגש ישירות עם היוצרים בסטודיו שלהם.","stage":"הפלטפורמה בנויה"},{"id":19,"name":"דנה בוסקילה","proj":"טרם נבחר שם","src":1,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,true,false,false],"status":"סטודנט/ית לתואר שני","fac":"עיצוב","intro":false,"desc":"מערכת חכמה מבוססת בינה מלאכותית לתכנון ועיצוב בתים פרטיים","stage":"קיימת הצעה קונקרטית כולל מתווה סקר שוק בסיסי ומודל הכנסות רב ערוצי"},{"id":20,"name":"מאיה זקס","proj":"nosy","src":1,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,false,false,false],"status":"בוגר/ת שנקר","fac":"עיצוב","intro":false,"desc":"כרגע סודי","stage":"שלב התכנון"},{"id":21,"name":"Bar Schwartz","proj":"Aptavo","src":1,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,true,false,false],"status":"בוגר/ת שנקר","fac":"הנדסה","intro":false,"desc":"אפטבו בודק אם הארגון שלך בנוי לפרויקטי ה-AI שאתה רוצה להריץ, ומה צריך לקרות כדי שזה יצליח.","stage":"alpha in real customer testing"},{"id":22,"name":"אפק פריזאת","proj":"Aēr","src":1,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,true,false,false],"status":"בוגר/ת שנקר","fac":"עיצוב","intro":false,"desc":"סטודיו לכלות ובגדי ערב","stage":"בשלבי תפירת קולקציה ראשונה והקמת סטודיו"},{"id":23,"name":"סהיל גורבאן","proj":"אין","src":1,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,false,false,false],"status":"סטודנט/ית לתואר ראשון","fac":"הנדסה","intro":false,"desc":"אין","stage":"אין"},{"id":24,"name":"אמיר רודני דיל","proj":"Shinobi AR","src":3,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,false,false,false],"status":"סטודנט/ית לתואר שני","fac":"עיצוב","intro":false,"desc":"An AR Stealth game where you have to sneak away from ninjas who are out to get you. and take them out one by one.","stage":"Playable Prototype"},{"id":25,"name":"רועי ויה","proj":"scope","src":4,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,false,false,false],"status":"סטודנט/ית לתואר ראשון","fac":"הנדסה","intro":false,"desc":"Scope היא אפליקציית אסטרולוגיה מבוססת AI בעברית — הראשונה מסוגה שמציעה חוויה אישית מלאה ולא רק תוכן גנרי. המשתמש מקבל הורוסקופ יומי, שבועי וחודשי שנוצר על ידי מודל שפה על בסיס חישוב אסטרונומי אמיתי (לא טקסט מוכן מראש), צ'אט עם \"אסטרולוגית AI\" בעלת אישיות…","stage":"המוצר בנוי ופונקציונלי במלואו: אונבורדינג, הורוסקופים (יומי/שבועי/חודשי), צ'אט AI, ניהול קשרים וסינסטריה, ומנוי פרימיום מוטמע (RevenueCat). עברנו מחזור הגשה מלא ל-App Store — כולל תיקון וטיפול בהערות ביקורת של אפל — ונמצאים כעת לקראת השקה. הצוות (2 מייסדים) עוסק כרגע במיקוד על ליטוש חווית המשתמש…"},{"id":26,"name":"אברהם קמפוס","proj":"שולחן","src":1,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,true,false,false],"status":"סטודנט/ית לתואר ראשון","fac":"עיצוב","intro":false,"desc":"\"שולחן\" הוא סביבת עבודה חזותית משותפת בעברית, שמאחדת לוח קנבס, משימות, יומן ובינה מלאכותית למקום אחד - בלי לצאת לצ'אט חיצוני ובלי לקפוץ בין כלים.","stage":"יש MVP פעיל ופרוס: הליבה הטכנית (הקנבס, הפתקים, המשימות, שכבת ה-AI) עובדת, ולאחרונה נוספה והושלמה שכבת עבודה משותפת בזמן אמת שנבדקה בהצלחה עם משתמשים אמיתיים ממכשירים נפרדים. האתר חי ונגיש בענן. עדיין בשלב טרום-הכנסות, ללא צוות רשמי מעבר ליזם, ולפני בניית שכבת חשבונות/הרשאות מלאה."},{"id":27,"name":"הדר שי שחר","proj":"FORMART","src":1,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,true,false,false],"status":"סטודנט/ית לתואר ראשון","fac":"אומנות","intro":false,"desc":"החלום שלי הוא לחבר בין אמנות לעולם העסקים וליצור מיצבי אמנות וחוויות אמנותיות למותגים.","stage":"שלב התחלתי מעבר לשלב הרעיון, שליחת הצעות ומצגות ללקוחות , עדיין נמצא בפיתוח. יש לי ניסיון מעשי בעולם האמנות וניסיון מעשי בעולם הלוגיסטיקה והעסקים. אני בעלת עסק בתחום הפיסול."},{"id":28,"name":"סופיה קולסניקוב","proj":"TRIP","src":4,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,true,false,false],"status":"בוגר/ת שנקר","fac":"עיצוב","intro":false,"desc":"TRIP הופכת בקבוקי יין משומשים לאובייקטים עיצוביים בעבודת יד, שמכניסים חומר, סיפור ואופי לחללי פנים.","stage":"המיזם נמצא בשלב מסחור ראשוני. קיימים מוצרים פיזיים שפותחו ונבדקו בפועל, כולל כוסות, קנקנים, אגרטלים ונרות מזכוכית ממוחזרת, אשר הוכחו כאיכותיים ופונקציונליים. המוצרים כבר נמכרו ללקוחות פרטיים ונעשה בהם שימוש בפועל, ובנוסף התקיים שיתוף פעולה מסחרי עם מסעדה, שבמסגרתו מוצרי TRIP שולבו בעיצוב הבר. בשלב…"},{"id":29,"name":"Shir Doron","proj":"OTP-order.try.pay","src":1,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,false,false,false],"status":"סטודנט/ית לתואר ראשון","fac":"עיצוב","intro":false,"desc":"תשתית תשלומים לעולמות האופנה והביגוד, מאפשרת ללקוח להזמין מספר פריטים, לקבל אותם הביתה ולמדוד בנוחות לפני החיוב הסופי. לאחר ההחלטה, הלקוח משלם רק על הפריטים שבחר להשאיר, ומחזיר את אלו שלא התאימו או שלא אהב. המיזם נועד לשפר את חוויית הקנייה אונליין, להפחית את…","stage":"התחלתי"},{"id":30,"name":"סופיה אומאילובה","proj":"ארקנה מרחבית","src":4,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,true,false,false],"status":"בוגר/ת שנקר","fac":"עיצוב","intro":false,"desc":"מערכת קלפים שהופכת את השיחה בין מעצב ללקוח לכלי תכנוני ומאפשרת לתרגם את הדרך שבה אדם חי, מרגיש וחווה את הבית להחלטות עיצוביות.","stage":"נכון לעכשיו, הפרויקט נמצא בשלב של אב־טיפוס עובד. המערכת כבר גובשה וכוללת חפיסה של 15 קלפים, כאשר כל קלף מהווה חלק מהמתודולוגיה הכוללת של האינטראקציה בין המעצב ללקוח. ההיגיון המרכזי של המערכת ואופן השימוש בה כבר פותחו ונבחנו במסגרת פרויקט הגמר. עם זאת, אני רואה בחפיסה הקיימת בסיס להמשך פיתוח. השלב…"},{"id":31,"name":"liron avramov","proj":"TlushCheck","src":1,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,true,false,false],"status":"סטודנט/ית לתואר ראשון","fac":"הנדסה","intro":false,"desc":"אפליקציה שתעזור לעובדי משמרות בניהול המשמרות והכספים","stage":"האפליקציה בחוץ- רוצה לשפר ולשווק"},{"id":32,"name":"ורד פנואלי","proj":"Dress Code – Play Fashion, Learn Culture","src":1,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,true,false,false],"status":"חבר.ת סגל/ מרצה בשנקר","fac":"עיצוב","intro":false,"desc":"משחק דיגיטלי שהופך את התרבות וההיסטוריה של האופנה לחוויית משחק אינטראקטיבית, שבה לומדים לקרוא בגדים כשפה של זהות, תרבות וחברה.","stage":"המיזם נמצא בשלב Working Prototype / MVP מתקדם. קיימת כיום גרסה עובדת של המשחק הכוללת מספר סצנות משחק, מערכת הלבשת אווטאר, מלתחה אינטראקטיבית, תוכן היסטורי ותרבותי ומנגנוני משוב. השלב הבא הוא פיתוח ושכלול מערכת ה־Fashion Profile, הרחבת התוכן והסצנות, שיפור חוויית המשתמש וביצוע בדיקות משתמשים.…"},{"id":33,"name":"יותם הרמן","proj":"NINETY+ (Everything beyond the game.)","src":4,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,true,false,false],"status":"סטודנט/ית לתואר ראשון","fac":"הנדסה","intro":false,"desc":"Ninety+ היא אפליקציה שהיא הבית הדיגיטלי של אוהדי הכדורגל, המחברת בין אוהדים, קבוצות וחוויית המשחק לפני, במהלך ואחרי 90 הדקות.","stage":"שלב Pre-Seed / Ideation , גיבוש הקונספט, אפיון ה-MVP ובחינת המודל העסקי ."},{"id":34,"name":"Danielle Shami","proj":"Feral - non-alcoholic botanical functional drinks","src":1,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,true,false,false],"status":"בוגר/ת שנקר","fac":"עיצוב","intro":false,"desc":"מותג משקאות פונקציונליים מוגזים לחיי הלילה, שנועד להציע חוויית שתייה עם אפקט מורגש ותחושת buzz, ללא אלכוהול וללא ההאנגאובר של היום שאחרי.","stage":"המיזם נמצא כיום בשלב מתקדם של מעבר מפיתוח להוצאה לפועל. גובשו הקונספט והמיצוב של המוצר, ונבנה בסיס מיתוגי המותאם לקהל היעד ולסביבת חיי הלילה שבהם המשקה עתיד לפעול. במקביל, יצרנו קשר עם מעבדה המתמחה בפיתוח משקאות, אשר מלווה את תהליך גיבוש הפורמולה והכנתה לייצור תעשייתי, וכן התחלנו לבסס רשת קשרים עם…"},{"id":35,"name":"אלון קנת","proj":"בבואה","src":4,"st":0,"s":[0,0,0,0,0],"note":"","ck":[true,true,false,false],"status":"בוגר/ת שנקר","fac":"הנדסה","intro":false,"desc":"כלי לניהול ומקסום טיפולים רגשיים עבור מטופלים","stage":"לקראת יציאה לשוק"}];
+var cur=null;
+var MG={t:"משחקי מובייל",s:"כ-113 מיליארד $ הכנסות מובייל ב-2025",n:"דוחות אחרים מדווחים על 137–149 מיליארד $ ב-2026, לפי הגדרה",r:"Newzoo"};
+var MK={3:{t:"ייצור חשמל מחום שיורי",s:"כ-23 מיליארד $ ב-2026",n:"דוחות אחרים: 8.7–35.7 מיליארד $, לפי הגדרת השוק",r:"The Business Research Company"},12:{t:"תוכנה לניהול אירועים",s:"כ-18.6 מיליארד $ ב-2026, צפי 36.8 ב-2031",n:"דוחות אחרים: 11–17 מיליארד $ ב-2026",r:"MarketsandMarkets"},9:MG,10:MG,24:MG,34:{t:"משקאות פונקציונליים",s:"כ-182 מיליארד $ ב-2026, צפי 372 ב-2034",n:"השוק הרלוונטי לפראל (מוגזים לחיי לילה, ללא אלכוהול) קטן בהרבה",r:"Fortune Business Insights"}};
+function mk(c){var m=MK[c.id];return m?'<div class="nx">שוק: '+m.s.split(',')[0]+'</div>':''}
+var CK=["טופס התעניינות","טופס הרשמה","שיחת טלפון ראשונה","ראיון אישי"];
+function nextStep(c){for(var i=0;i<4;i++)if(!c.ck[i])return i;return 4}
+function prog(c){var n=nextStep(c);return'<div class="dots" aria-hidden="true">'+CK.map(function(k,i){return'<span class="dot'+(c.ck[i]?' on':'')+'" title="'+k+'"></span>'}).join("")+'</div><div class="nx'+(n===4?' ok':'')+'">'+(n===4?'כל השלבים הושלמו':'הבא: '+CK[n])+'</div>'}
+
+function score(c){var t=0,any=false;CRIT.forEach(function(k,i){if(c.s[i]>0)any=true;t+=c.s[i]*k[1]/5});return any?Math.round(t):null}
+function cls(v){return v===null?"na":v>=75?"hi":v>=55?"mid":"lo"}
+function esc(t){return String(t).replace(/[&<>"]/g,function(m){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]})}
+
+function render(){
+  var q=document.getElementById("q").value.trim(),sf=document.getElementById("src").value;
+  var pf=document.getElementById("prg").value;
+  var list=C.filter(function(c){return(!q||(c.name+c.proj).indexOf(q)>-1)&&(sf===""||String(c.src)===sf)&&(pf===""||(pf==="f"?nextStep(c)<=1:String(nextStep(c))===pf))});
+  // funnel: how many reached each stage or beyond (rejected excluded)
+  var f=document.getElementById("funnel"),prev=null,h="";
+  for(var i=0;i<5;i++){
+    var n=C.filter(function(c){return c.st!==5&&c.st>=i}).length;
+    var pct=prev&&prev>0?Math.round(n/prev*100)+"% מהשלב הקודם":"כל הפניות";
+    h+='<div class="fs"><span>'+STAGES[i]+'</span><b>'+n+'</b><i>'+pct+'</i></div>';prev=n;
+  }
+  var rej=C.filter(function(c){return c.st===5}).length;
+  h+='<div class="fs"><span>נדחו</span><b>'+rej+'</b><i>&nbsp;</i></div>';
+  f.innerHTML=h;
+  var b=document.getElementById("board");b.innerHTML="";
+  STAGES.forEach(function(sn,si){
+    var items=list.filter(function(c){return c.st===si}).sort(function(a,b){return(score(b)||0)-(score(a)||0)});
+    var col=document.createElement("div");col.className="col";
+    col.innerHTML='<h2>'+sn+'<em>'+items.length+'</em></h2>';
+    items.forEach(function(c){
+      var s=score(c),el=document.createElement("button");el.className="card";
+      el.innerHTML='<div class="n">'+esc(c.name)+'</div><div class="p">'+esc(c.proj)+'</div>'+prog(c)+mk(c)+'<div class="r"><span>'+SRC[c.src]+'</span><span class="sc '+cls(s)+'">'+(s===null?"טרם נבדק":s)+'</span></div>';
+      el.onclick=function(){openC(c.id)};col.appendChild(el);
+    });
+    if(!items.length)col.insertAdjacentHTML("beforeend",'<div class="sub" style="padding:6px 4px">אין מועמדים בשלב זה</div>');
+    b.appendChild(col);
+  });
+}
+
+function openC(id){
+  cur=C.filter(function(c){return c.id===id})[0];var d=document.getElementById("dlg");
+  var h='<div style="display:flex;justify-content:space-between;gap:10px"><div><b style="font-size:18px">'+esc(cur.name)+'</b><div class="sub">'+esc(cur.proj)+' · '+SRC[cur.src]+'</div></div><div class="big" id="tot"></div></div>';
+  h+='<div class="sub" style="margin-top:10px">'+[cur.status,cur.fac,cur.intro?'בוגר/ת INTRO':''].filter(Boolean).map(esc).join(' · ')+'</div>';
+  if(cur.desc)h+='<p style="margin:8px 0 0"><b>על המיזם:</b> '+esc(cur.desc)+'</p>';
+  if(cur.stage)h+='<p style="margin:6px 0 0"><b>שלב המיזם:</b> '+esc(cur.stage)+'</p>';
+  var m=MK[cur.id];h+=m?'<p style="margin:8px 0 0"><b>גודל שוק (גלובלי):</b> '+m.t+' · '+m.s+'<br><span class="sub">'+m.n+' · מקור: '+m.r+'</span></p>':'<p class="sub" style="margin:8px 0 0">גודל שוק: טרם נבדק</p>';
+  h+='<p class="sub" style="margin:12px 0 2px">התקדמות בתהליך</p><div class="ckl">'+CK.map(function(k,i){return'<label><input type="checkbox" data-i="'+i+'"'+(cur.ck[i]?' checked':'')+'> '+k+'</label>'}).join("")+'</div>';
+  h+='<p class="sub" style="margin:12px 0 2px">מחוון הערכה (1–5, משקל באחוזים)</p>';
+  CRIT.forEach(function(k,i){h+='<div class="row"><label for="r'+i+'">'+k[0]+'</label><input type="range" id="r'+i+'" min="0" max="5" step="1" value="'+cur.s[i]+'"><span class="sub" id="v'+i+'">'+cur.s[i]+' ('+k[1]+'%)</span></div>'});
+  h+='<div class="fld"><label for="nt" class="sub">הערות מהראיון</label><textarea id="nt" rows="3">'+esc(cur.note)+'</textarea></div>';
+  h+='<div class="sub">העברה לשלב</div><div class="stg" id="stg"></div>';
+  h+='<div class="foot"><button id="del">מחיקה</button><button class="pri" id="cl">סגירה</button></div>';
+  d.innerHTML=h;
+  function upd(){var s=score(cur),t=document.getElementById("tot");t.textContent=s===null?"–":s;t.className="big "+cls(s)}
+  CRIT.forEach(function(k,i){document.getElementById("r"+i).oninput=function(e){cur.s[i]=+e.target.value;document.getElementById("v"+i).textContent=cur.s[i]+" ("+k[1]+"%)";upd();render()}});
+  document.getElementById("nt").oninput=function(e){cur.note=e.target.value};
+  d.querySelectorAll('.ckl input').forEach(function(x){x.onchange=function(){cur.ck[+x.dataset.i]=x.checked;render()}});
+  var sg=document.getElementById("stg");
+  STAGES.forEach(function(sn,si){var bt=document.createElement("button");bt.textContent=sn;if(cur.st===si)bt.className="on";bt.onclick=function(){cur.st=si;render();openC(cur.id)};sg.appendChild(bt)});
+  document.getElementById("cl").onclick=function(){d.close()};
+  document.getElementById("del").onclick=function(){C=C.filter(function(c){return c.id!==cur.id});d.close();render()};
+  upd();if(!d.open)d.showModal();
+}
+
+function addC(){
+  var d=document.getElementById("dlg");
+  var h='<b style="font-size:18px">מועמד חדש</b><div class="fld"><input id="an" placeholder="שם מלא" aria-label="שם"><input id="ap" placeholder="שם הפרויקט" aria-label="פרויקט"><select id="as" aria-label="ערוץ">'+SRC.map(function(s,i){return'<option value="'+i+'">'+s+'</option>'}).join("")+'</select></div><div class="foot"><button id="ac">ביטול</button><button class="pri" id="ak">הוספה</button></div>';
+  d.innerHTML=h;
+  document.getElementById("ac").onclick=function(){d.close()};
+  document.getElementById("ak").onclick=function(){
+    var n=document.getElementById("an").value.trim();if(!n){document.getElementById("an").focus();return}
+    C.push({id:nid++,name:n,proj:document.getElementById("ap").value.trim()||"ללא שם פרויקט",src:+document.getElementById("as").value,st:0,s:[0,0,0,0,0],note:"",ck:[true,false,false,false]});
+    d.close();render();
+  };
+  d.showModal();
+}
+
+var ss=document.getElementById("src");
+ss.innerHTML='<option value="">כל הערוצים</option>'+SRC.map(function(s,i){return'<option value="'+i+'">'+s+'</option>'}).join("");
+ss.onchange=render;document.getElementById("prg").onchange=render;document.getElementById("q").oninput=render;document.getElementById("add").onclick=addC;
+render();
+</script>
+</body>
+</html>
